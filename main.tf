@@ -82,10 +82,11 @@ resource "random_uuid" "example" {}
 
 // Create a GCP Bucket
 resource "google_storage_bucket" "bucket" {
-  project       = var.project_id
-  name          = "authui-${var.name}-${random_uuid.example.result}"
-  location      = var.region
-  force_destroy = true
+  project                     = var.project_id
+  name                        = "authui-${var.name}-${random_uuid.example.result}"
+  location                    = var.region
+  uniform_bucket_level_access = true
+  force_destroy               = true
 }
 
 // Grant access to the bucket to Cloud Run Service Account
